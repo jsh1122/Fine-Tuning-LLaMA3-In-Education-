@@ -1,3 +1,15 @@
+# 对比
+
+## 微调前
+
+![image-20240505231420957](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/20.png?raw=true)
+
+## 微调后
+
+![image-20240505231420957](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/21.png?raw=true)
+
+
+
 # 如何使用
 
 ## 下载微调好的教育模型
