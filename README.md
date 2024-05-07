@@ -14,7 +14,7 @@
 
 安装结束后打开AppData文件夹（需打开隐藏目录）
 
-![image-20240505230814571](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505230814571.png)
+![image-20240505230814571](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/2.png?raw=true)
 
 在将下载好的GGUF模型放在如下图所示的路径里
 
