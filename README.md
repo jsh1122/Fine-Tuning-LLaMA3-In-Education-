@@ -1,18 +1,16 @@
-# 完整图片可下载本仓库Education.pdf查看
-
 # 如何使用
 
 ## 下载微调好的教育模型
 
 下载GGUF模型（点击files）[Starxx/LLaMa3-Fine-Tuning-Classical-GGUF · HF Mirror (hf-mirror.com)](https://hf-mirror.com/Starxx/LLaMa3-Fine-Tuning-Classical-GGUF)
 
-![image-20240505231420957](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505231420957.png)
+![image-20240505231420957](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/1.png?raw=true)
 
 ## GPT4ALL
 
-下载百度网盘中的maintenancetool软件安装GPT4ALL（一直下一步完成安装）
+下载GPT4ALL并安装（[nomic-ai/gpt4all: gpt4all: run open-source LLMs anywhere (github.com)](https://github.com/nomic-ai/gpt4all)）（一直下一步完成安装）
 
-![image-20240505230457670](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505230457670.png)
+![image-20240505230457670](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/19.png?raw=true)
 
 安装结束后打开AppData文件夹（需打开隐藏目录）
 
@@ -20,19 +18,19 @@
 
 在将下载好的GGUF模型放在如下图所示的路径里
 
-![image-20240505231113435](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505231113435.png)
+![image-20240505231113435](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/3.png?raw=true)
 
 打开GPT4ALL点击设置
 
-![image-20240505231755665](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505231755665.png)
+![image-20240505231755665](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/4.png?raw=true)
 
 将设备改为CPU驱动，修改模型路径
 
-![image-20240505231720215](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505231720215.png)
+![image-20240505231720215](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/5.png?raw=true)
 
 然后选择加载模型，进行相关提问操作等
 
-![image-20240505232515540](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505232515540.png)
+![image-20240505232515540](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/6.png?raw=true)
 
 # 仓库地址
 
@@ -40,11 +38,13 @@
 
 https://huggingface.co/Starxx/LLaMa3-Fine-Tuning-Classical-GGUF/tree/main
 
-![image-20240505230300993](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505230300993.png)
+![image-20240505230300993](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/7.png?raw=true)
+
+
 
 # 微调过程
 
-![image-20240505224432338](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505224432338.png)
+![image-20240505224432338](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/8.png?raw=true)
 
 ```python
 %%capture
@@ -53,7 +53,7 @@ https://huggingface.co/Starxx/LLaMa3-Fine-Tuning-Classical-GGUF/tree/main
 !pip install --no-deps "xformers<0.0.26" trl peft accelerate bitsandbytes
 ```
 
-![image-20240505225103798](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225103798.png)
+![image-20240505225103798](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/9.png?raw=true)
 
 ```python
 from unsloth import FastLanguageModel
@@ -83,7 +83,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 )
 ```
 
-![image-20240505225130488](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225130488.png)
+![image-20240505225130488](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/10.png?raw=true)
 
 ```python
 model = FastLanguageModel.get_peft_model(
@@ -102,7 +102,7 @@ model = FastLanguageModel.get_peft_model(
 )
 ```
 
-![image-20240505225156070](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225156070.png)
+![image-20240505225156070](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/11.png?raw=true)
 
 ```python
 alpaca_prompt = """Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
@@ -134,7 +134,7 @@ dataset = load_dataset("xmj2002/Chinese_modern_classical", split = "train")
 dataset = dataset.map(formatting_prompts_func, batched = True,)
 ```
 
-![image-20240505225217118](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225217118.png)
+![image-20240505225217118](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/12.png?raw=true)
 
 ```python
 from trl import SFTTrainer
@@ -166,15 +166,15 @@ trainer = SFTTrainer(
 )
 ```
 
-![image-20240505225253822](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225253822.png)
+![image-20240505225253822](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/13.png?raw=true)
 
-![image-20240505225307867](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225307867.png)
+![image-20240505225307867](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/14.png?raw=true)
 
 ```python
 trainer_stats = trainer.train()
 ```
 
-![image-20240505225354964](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225354964.png)
+![image-20240505225354964](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/15.png?raw=true)
 
 ```python
 # alpaca_prompt = 从上面复制
@@ -190,9 +190,10 @@ inputs = tokenizer(
 
 outputs = model.generate(**inputs, max_new_tokens = 64, use_cache = True)
 tokenizer.batch_decode(outputs)
+
 ```
 
-![image-20240505225418300](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225418300.png)
+![image-20240505225418300](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/16.png?raw=true)
 
 ```python
 # model.save_pretrained("lora_model") # Local saving
@@ -201,9 +202,9 @@ model.push_to_hub("Starxx/LLaMa3-Fine-Tuning-Classical", token = "hf_QjEQrRQYfJF
 tokenizer.push_to_hub("Starxx/LLaMa3-Fine-Tuning-Classical", token = "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") # Online saving
 ```
 
-![image-20240505225501874](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225501874.png)
+![image-20240505225501874](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/17.png?raw=true)
 
-![image-20240505225533767](C:\Users\21453\AppData\Roaming\Typora\typora-user-images\image-20240505225533767.png)
+![image-20240505225533767](https://github.com/jsh1122/Fine-Tuning-LLaMA3-In-Education-/blob/main/Image/18.png?raw=true)
 
 ```python
 # Save to q4_k_m GGUF
